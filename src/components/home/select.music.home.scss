@@ -1,0 +1,54 @@
+$color_home : #273746 ;
+$letter_white_color:#eee;
+
+
+
+.home
+{
+    //background: $color_home;
+    height:100vh;
+    background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    url('../../assets/images/background_img.jpg');
+    background-size:cover;
+    background-attachment: fixed;
+    display: grid;
+    place-items: center;
+
+    .home_container
+    {
+        width:70%;
+        height: 65%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-top: 8rem;
+        h2{
+            font-size: 5rem;
+            color: $letter_white_color;
+            font-family:"Nunito", sans-serif;
+        }
+
+
+        .home_container_button-down
+        {
+            animation: animationDownButton 2s linear infinite alternate;
+            .bt_down
+            {
+                font-size: 5rem;
+                color: $letter_white_color;
+            }
+        }
+    }
+    
+}
+
+@keyframes animationDownButton{
+    0%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(25px);
+    }
+}

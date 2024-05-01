@@ -1,0 +1,85 @@
+.products_container
+{
+    background: #eee;
+    height: 90vh;
+    display: grid;
+    place-items: center;
+    .products
+    {
+        //background: blue;
+        width:90%;
+        height:90%;
+        display: flex;
+        flex-wrap: wrap;
+        //justify-content: space-between;
+        justify-content: center;
+
+        .products_card
+        {
+            //border-bottom: 5px solid #eee;
+            width:25%;
+            height:35%;
+            background: #fff;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 1rem;
+            margin: 1rem;
+
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+            transition: transform .5s;
+            user-select: none;
+
+            h3{
+                color:#fff;
+            }
+
+            &:hover
+            {
+                transform: scale(1.1);
+            }
+        }
+
+        .products_card-img-1
+        {
+            background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+            url('../../assets/images/about-us.jpg');
+            background-size: cover;
+        }
+
+        .products_card-img-2
+        {
+            background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+            url('../../assets/images/live.jpg');
+            background-size: cover;
+        }
+
+        .products_card-img-3
+        {
+            background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+            url('../../assets/images/service.jpg');
+            background-size: cover;
+        }
+
+        .products_card-img-4
+        {
+            background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+            url('../../assets/images/select-music.jpg');
+            background-size: cover;
+        }
+
+        .products_card-img-5
+        {
+            background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+            url('../../assets/images/contact-us.jpg');
+            background-size: cover;
+        }
+    }
+}

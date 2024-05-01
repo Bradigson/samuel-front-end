@@ -1,0 +1,77 @@
+$header_background_color:#eee;
+$header_background_color_alpha:rgba(255,255,255,.7);
+$header_background_color_no_alpha:rgba(255,255,255,9);
+$letter_color_black:#000;
+.header{
+    background: none;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem 1rem 2rem;
+    font-family:"Nunito", sans-serif;
+    transition: background .5s;
+
+    .header_nav-logo
+    {
+        color: $header_background_color;
+        font-size: 2rem;
+    }
+
+    .header-navbar{
+        display: flex;
+        justify-content: flex-end;
+        justify-content: space-between;
+        width: 40%;
+
+        .header-link{
+            text-decoration: none;
+            color:$header_background_color_alpha;
+            font-weight: 600;
+            transition: transform 0.2s;
+            &:hover{
+                transform:scale(1.1);
+                color:$header_background_color_no_alpha ;
+            }
+        }
+        .header-link::before
+        {
+            content: ' ';
+            width: 0;
+            height: 2px;
+            position: absolute;
+            bottom: 0;
+            border-radius: 5rem;
+            transition: width .2s;
+        }
+
+        .header-link:hover::before{
+            background: #eee;
+            width: 3.6rem;
+        }
+
+    }
+}
+
+
+
+.header-scrolled {
+    background: #0d0d0d; // Se vuelve más oscuro al hacer scroll
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    .header_nav-logo
+    {
+        color: $header_background_color_no_alpha;
+        font-size: 2rem;
+    }
+    .header-navbar{
+        
+        .header-link{
+            color: $header_background_color_alpha;
+            
+        }
+    }
+  }
