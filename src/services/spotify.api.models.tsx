@@ -75,3 +75,10 @@ export interface ISelected{
   artist:string,
   track:string
 }
+
+
+
+export interface IAddOwnSong{
+  artist:string,
+  track:string
+}

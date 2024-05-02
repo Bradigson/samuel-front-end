@@ -37,16 +37,16 @@ $letter_color_black:#000;
                 color:$header_background_color_no_alpha ;
             }
         }
-        .header-link::before
-        {
-            content: ' ';
-            width: 0;
-            height: 2px;
-            position: absolute;
-            bottom: 0;
-            border-radius: 5rem;
-            transition: width .2s;
-        }
+        // .header-link::before
+        // {
+        //     content: ' ';
+        //     width: 0;
+        //     height: 2px;
+        //     position: absolute;
+        //     bottom: 0;
+        //     border-radius: 5rem;
+        //     transition: width .2s;
+        // }
 
         .header-link:hover::before{
             background: #eee;

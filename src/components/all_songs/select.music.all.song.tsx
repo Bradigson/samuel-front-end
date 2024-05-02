@@ -1,10 +1,12 @@
 import { SpotifyAuthentication } from "../../services/spotify.authentication";
 import { SpotifyRequest } from "../../services/spotify.api";
 import { useState, useEffect } from "react";
-import { tracks, Ifilter, ISelected } from "../../services/spotify.api.models";
+import { tracks, Ifilter, ISelected, IAddOwnSong } from "../../services/spotify.api.models";
 import './select.music.all.song.scss';
+import './select.music.all.song.mobile.scss';
 import { useNavigate } from "react-router-dom";
 import { filterBySongOrArtis } from "../../services/spotify.filter.songs";
+import { handleAlertSendEmail } from "../../alerts/select.music.alert.send.email";
 
 
 
@@ -20,6 +22,11 @@ const AllSong = ()=>{
     });
     const [show, setShow] = useState<boolean>(false);
     const navigate = useNavigate();
+    const [showForm, setShowForm] = useState<boolean>(false);
+    const [form, setForm] = useState<IAddOwnSong>({
+        artist:"",
+        track:""
+    })
 
     //loadd all products
     useEffect( ()=>{
@@ -164,10 +171,73 @@ const AllSong = ()=>{
         })
         filterParams.limit = 0;
         filterParams.query = '';
+        setSeleccionados(new Set());
     }
 
+
+
+
+
+    //function to open form
+    const handleOpenForm = ()=>{
+        setShowForm(!showForm);
+    }
+
+
+    const handleTrack = (e:any)=>{
+        setForm({
+            ...form,
+            [e.target.name] : [e.target.value]})
+    }
+
+
+
+    const handleArtist = (e:any)=>{
+        setForm({
+            ...form,
+            [e.target.name] : [e.target.value]
+        })
+    }
+
+
+    const handleAddOwnSong = (e:any)=>{
+        e.preventDefault();
+        const lastItem = selectedState[selectedState.length - 1];
+
+        let lastId:number = 0;
+
+        if(lastItem != null)
+        {
+            lastId = lastItem.id + 1;
+        }
+         // Objeto que deseas agregar (datos ficticios)
+         const nuevoElemento: ISelected = { id:lastId, artist:form.artist.toString(), track:form.track.toString() };
+         // Verificar si el objeto ya existe en el estado
+         const existe = selectedState.some(item => item.id === nuevoElemento.id);
+         // Si el objeto no existe en el estado, agregarlo
+         if (!existe) {
+             setSelectedState([...selectedState, nuevoElemento]);
+         }
+
+         form.artist = "";
+         form.track = "";
+
+    }
+
+
+
+
+    //send email
+
+    const handleSendEmail = ()=>{
+        setSelectedState([]);
+        setSeleccionados(new Set());
+        handleAlertSendEmail();
+        setShow(false);
+
+    }
     return (
-        <div>
+        <div className="allsong_container">
             <header className="allsong_header">
                 <i className='bx bx-chevron-left' onClick={navigateToHome}></i>
                 <div className="allsong_header-search_container">
@@ -258,7 +328,7 @@ const AllSong = ()=>{
                         </div>
                     </div>
                     <div className={selectedState.length <= 0 ? "btn-send-email-container d-none" :  "btn-send-email-container"}>
-                        <button> <i className='bx bxl-telegram'></i></button>
+                        <button id="btn-send-email-container_button" onClick={handleSendEmail}> <i className='bx bxl-telegram'></i></button>
                     </div>
                 </div>
             </div>
@@ -267,8 +337,8 @@ const AllSong = ()=>{
 
 
                                 
-            {/* button to add you won song */}
-            <button className="floatinButtonToAdd">
+            {/* open form || button to add you own song */}
+            <button className="floatinButtonToAdd" onClick={handleOpenForm}>
                 <i className='bx bx-folder-plus'></i>
             </button>
 
@@ -280,14 +350,15 @@ const AllSong = ()=>{
 
 
             {/* formulario to add song */}
-            <div className="form-container">
-                <form>
-                    <div className="form_container-close">
+            <div className={showForm ?  "form-container" : "form-container d-none"}>
+                <form onSubmit={handleAddOwnSong}>
+                    <div className="form_container-close" onClick={handleOpenForm}>
                         <i className='bx bx-x'></i>
                     </div>
                     <div className="form_container-input">
-                        <input type="text" placeholder="cancion"/><br/><br/>
-                        <input type="text" placeholder="artista"/>
+                        <input type="text" placeholder="cancion" name="track" value={form.track} onChange={handleTrack}/>
+                            <br/><br/>
+                        <input type="text" placeholder="artista" name="artist" value={form.artist} onChange={handleArtist}/>
                     </div>
                     <div className="form_container-button">
                         <button>Agregar</button>

@@ -34,11 +34,12 @@ const Header = ()=>{
             </div>
 
             <nav className="header-navbar">
-                <Link to="/all_songs" className="header-link">Home</Link>
-                <Link to="" className="header-link">Feature</Link>
-                <Link to="" className="header-link">Client</Link>
-                <Link to="" className="header-link">Price</Link>
-                <Link to="" className="header-link">Contact</Link>
+                <Link to="/" className="header-link">Home</Link>
+                <Link to="" className="header-link">Quines somos</Link>
+                <Link to="" className="header-link">Live</Link>
+                <Link to="" className="header-link">Servicios</Link>
+                <Link to="" className="header-link">Elije tu Cancion</Link>
+                <Link to="" className="header-link">Contactos</Link>
             </nav>
         </header>
        

@@ -1,0 +1,90 @@
+@media only screen and (width <= 1024px)
+{
+    .allsong_header
+    {
+        //background:red;
+
+        .allsong_header-search_container
+        {
+            //background: yellow;
+            width: 90%;
+
+            .allsong_header-search
+            {
+                //background: red;
+                width: 55%;
+            }
+        }
+    }
+
+
+    .songs
+    {
+        //background: yellow;
+        display: grid;
+        place-items: center;
+    }
+
+    .all_selected
+    {
+        //background: red;
+        .all_selected_containers
+        {
+            //background: green;
+            width: 60%;
+        }
+    }
+    #btn-send-email-container_button{
+        //width:15rem;
+    }
+
+
+    .form-container
+    {
+        //background: red;
+        form{
+            //background: yellow;
+            height:25%;
+
+            .form_container-input
+            {
+                //background: red;
+                width:90%;
+            }
+        }
+    }
+}
+
+
+
+
+@media only screen and (width <= 700px)
+{
+    .allsong_header
+    {
+        display: none;
+    }
+
+    .form-container
+    {
+        form{
+            height:35%;
+            width:80%;
+
+            .form_container-input
+            {
+                width:90%;
+            }
+        }
+    }
+
+
+
+    .floatinButtonToAdd
+    {
+        right:1rem;
+        bottom: 3rem;
+        width:3.5rem;
+        height: 3.5rem;
+    }
+}
