@@ -4,6 +4,7 @@ import service from '../../assets/images/service.png';
 import select_music from '../../assets/images/music-select.png'
 import contact_us from '../../assets/images/contact-us.png'
 import './music.select.products.scss';
+import '../home/select.music.home.mobile.scss';
 import { useNavigate } from 'react-router-dom';
 
 const Products  = ()=>
@@ -17,7 +18,6 @@ const Products  = ()=>
 
     }
     return (
-        <div className="products_container">
 
             <div className='products' >
 
@@ -53,7 +53,6 @@ const Products  = ()=>
 
             </div>
             
-        </div>
     )
 }
 

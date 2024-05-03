@@ -1,5 +1,6 @@
 
 import './select.music.header.scss';
+import '../../home/select.music.home.mobile.scss'
 import { Link} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 const Header = ()=>{

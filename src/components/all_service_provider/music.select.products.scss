@@ -1,24 +1,17 @@
-.products_container
-{
-    background: #eee;
-    height: 90vh;
-    display: grid;
-    place-items: center;
+
     .products
     {
-        //background: blue;
-        width:90%;
-        height:90%;
-        display: flex;
-        flex-wrap: wrap;
-        //justify-content: space-between;
-        justify-content: center;
+        width:100%;
+        display: grid; /* Activar CSS Grid */
+        grid-template-columns: repeat(3, 1fr); /* Dos columnas iguales */
+        gap: 10px; 
+        place-items: center;
 
         .products_card
         {
             //border-bottom: 5px solid #eee;
-            width:25%;
-            height:35%;
+            width:18rem;
+            height:15rem;
             background: #fff;
             border-radius: 1rem;
             display: flex;
@@ -82,4 +75,3 @@
             background-size: cover;
         }
     }
-}
