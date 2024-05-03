@@ -26,7 +26,10 @@ const AllSong = ()=>{
     const [form, setForm] = useState<IAddOwnSong>({
         artist:"",
         track:""
-    })
+    });
+    const [menu, setMenu] = useState(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isLoadingRefresh, setIsLoadingRefresh] = useState<boolean>(false);
 
     //loadd all products
     useEffect( ()=>{
@@ -236,6 +239,70 @@ const AllSong = ()=>{
         setShow(false);
 
     }
+
+
+
+
+    //open menu
+    const handleMenu = ()=>{
+        setMenu(!menu);
+    }
+
+
+
+    //refresh mobile
+        //functiion to refresh
+        const refreshMobile = async ()=>{
+            setIsLoadingRefresh(true);
+            await SpotifyAuthentication().then(async (token)=>{
+                if(token !== null)
+                {
+                    const requestResponse = await SpotifyRequest(token);
+                    if(requestResponse !== null)
+                    {   
+                        setSongs(requestResponse.tracks);
+                        setIsLoadingRefresh(false);
+                        setMenu(false);
+                    }
+                }else
+                {
+                    console.log("data null");
+                }
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+            filterParams.limit = 0;
+            filterParams.query = '';
+            setSeleccionados(new Set());
+        }
+
+
+    //mobile filter
+    const handleFilterRequetsMobile = async ()=>{
+        setIsLoading(true);
+        let track = filterParams.query.toString();
+        let limit = parseInt(filterParams.limit.toString());
+
+        await SpotifyAuthentication().then(async (t)=>{
+            if(t != null)
+            {
+                const response = await filterBySongOrArtis(t, track, limit);
+                setSongs(response.tracks);
+                setIsLoading(false);
+                setMenu(false);
+
+            }else
+            {
+                console.log('no token found');
+            }
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
+
+
     return (
         <div className="allsong_container">
             <header className="allsong_header">
@@ -254,9 +321,82 @@ const AllSong = ()=>{
                 </div>
 
             </header>
+
+
+
+
+
+            {/* mobile header */}
+            <header className="header_mobiles">
+                {/* <button onClick={handleMenu}>
+                    <i className='bx bx-menu'></i>
+                </button> */}
+                <i className='bx bx-chevron-left' onClick={navigateToHome}></i>
+
+                <nav className={`${menu ? 'change' : ''}${ ' navbar' }`}>
+                    <div className='hamburger-menu' onClick={handleMenu}>
+                        <div className='line line-1'></div>
+                        <div className='line line-2'></div>
+                        <div className='line line-3'></div>
+                    </div>
+
+                    <div id='header_mobiles_container-list'>
+                        <div className='header_mobiles_container_list-container'>
+                            <div className='header_mobiles_container_list-input'>
+                                    <input type="text" placeholder='cancion' name="query" value={filterParams.query}  onChange={handleFilter}/>
+                                    <input type="number" name="limit" max={50} value={filterParams.limit} onChange={handleLimit}/>
+                            </div>
+                            <div className='header_mobiles_container_list-buttons'>
+                                <button onClick={handleFilterRequetsMobile}>
+                                    {
+                                        isLoading ? (
+                                            <div className="spinner-border spinner-border-sm" role="status">
+                                                <span className="visually-hidden">Loading...</span>
+                                            </div>
+                                        ) : (
+                                            <i className='bx bx-search-alt'></i>
+                                        )
+                                    }
+                                </button>
+                                <button onClick={showModal}>
+                                    <i className='bx bx-envelope'></i>
+                                </button>
+                                <button onClick={refreshMobile}>
+                                    {
+                                        isLoadingRefresh ? (
+                                            <div className="spinner-border spinner-border-sm" role="status">
+                                                <span className="visually-hidden">Loading...</span>
+                                            </div>
+                                        ) : (
+                                            <i className='bx bx-refresh'></i>
+                                        )
+                                    }
+                                </button>
+                            </div>
+                            {/* <div>
+                                <button></button>
+                            </div> */}
+                        </div>
+                    </div>
+                
+                </nav>
+                
+            </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
            
             <div >
-                
                     {
                         songs != null ? (
                             <div className="songs">

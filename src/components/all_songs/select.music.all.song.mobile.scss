@@ -57,6 +57,22 @@
 
 
 
+@media only screen and (width > 700px)
+{
+    .header_mobiles
+    {
+        display: none;
+    }
+    nav
+    {
+        display: none;
+        #header_mobiles_container-list
+        {
+            display: none;
+        }
+    }
+
+}
 
 @media only screen and (width <= 700px)
 {
@@ -65,10 +81,151 @@
         display: none;
     }
 
+    .header_mobiles
+    {
+        background: #262626;
+        width:100%;
+        height: 5rem;
+        position: fixed;
+        top: 0;
+       
+
+        .bx-chevron-left
+        {
+            color:#eee;
+            font-size: 3rem;
+            position: fixed;
+            top:.8rem;
+        }
+    }
+
+    //header mobile
+    nav{
+
+        background: #262626;
+        position:fixed;
+        height:100vh;
+        left:-625px;
+        transition:all .8s;
+        width:100%;
+    
+        .hamburger-menu{
+            width:35px;
+            height:30px;
+            position:fixed;
+            top:1.5rem;
+            right:1rem;
+            cursor:pointer;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-around;
+            
+        }
+
+        #header_mobiles_container-list
+        {
+            //background: green;
+            width:100%;
+            height:65%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+           
+            
+            //width
+
+            .header_mobiles_container_list-container
+            {
+                background: #eee;
+                height:90%;
+                width: 90%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                border-radius: 1rem;
+                .header_mobiles_container_list-input
+                {
+                    //background: blue;
+                    height: 30%;
+                    padding: .5rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    input{
+                        background: #fff;
+                        border:none;
+                        width:100%;
+                        border-radius: 1rem;
+                        padding-left: 1rem;
+                        line-height: 2;
+                    }
+                    input:focus{
+                        outline: none;
+                    }
+
+                }
+
+                .header_mobiles_container_list-buttons
+                {
+                    //background: purple;
+                    height: 30%;
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    button{
+                        background: rgb(84, 84, 239);
+                        border: none;
+                        font-size: 1.7rem;
+                        border-radius: 3rem;
+                        color: #eee;
+                        width:3rem;
+                        height:3rem;
+                        display: grid;
+                        place-items: center;
+                        
+
+                    }
+                }
+
+            }
+
+            
+        }
+        
+    }
+    
+    .change{
+        left:0px;
+    }
+    .line{
+        width:90%;
+        height:3px;
+        background:#eee;
+        transition:all .8s;
+    }
+    .change .line-1{
+        transform:rotateZ(-405deg) translate(-8px, 6px);
+    }
+    .change .line-2{
+        opacity:0;
+    }
+    .change .line-3{
+        transform:rotateZ(405deg) translate(-8px, -6px);
+    }
+
+
+
+
+
+
+
+
+
+
     .form-container
     {
         form{
-            height:35%;
+            height:40%;
             width:80%;
 
             .form_container-input
@@ -86,5 +243,16 @@
         bottom: 3rem;
         width:3.5rem;
         height: 3.5rem;
+    }
+
+
+
+
+    .all_selected 
+    {
+        .all_selected_containers
+        {
+            width: 100%;
+        }
     }
 }
