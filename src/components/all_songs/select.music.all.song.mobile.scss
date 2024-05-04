@@ -18,6 +18,8 @@
     }
 
 
+
+
     .songs
     {
         //background: yellow;
@@ -34,9 +36,9 @@
             width: 60%;
         }
     }
-    #btn-send-email-container_button{
-        //width:15rem;
-    }
+    // #btn-send-email-container_button{
+    //     //width:15rem;
+    // }
 
 
     .form-container
@@ -71,6 +73,7 @@
             display: none;
         }
     }
+
 
 }
 
@@ -137,7 +140,7 @@
             .header_mobiles_container_list-container
             {
                 background: #eee;
-                height:90%;
+                height:58%;
                 width: 90%;
                 display: flex;
                 flex-direction: column;
@@ -172,19 +175,29 @@
                     display: flex;
                     justify-content: space-evenly;
                     align-items: center;
-                    button{
+
+                    .bx-search-alt, .bx-envelope, .bx-refresh
+                    {
                         background: rgb(84, 84, 239);
-                        border: none;
-                        font-size: 1.7rem;
-                        border-radius: 3rem;
-                        color: #eee;
-                        width:3rem;
-                        height:3rem;
-                        display: grid;
-                        place-items: center;
+                        color: #fff;
+                        font-size: 2.3rem;
+                        padding: .4rem;
+                        border-radius: 5rem;
+                    }
+                    // button{
+                    //     //background: yellow;
+                    //     border: none;
+                    //     font-size: 1.7rem;
+                    //     border-radius: 5rem;
+                    //     color: #eee;
+                    //     width:2.5rem;
+                    //     height:3rem;
+                    //     display: flex;
+                    //     justify-content: center;
+                    //     align-items: center;
                         
 
-                    }
+                    // }
                 }
 
             }
@@ -237,14 +250,29 @@
 
 
 
-    .floatinButtonToAdd
+    .bx-folder-plus
     {
-        right:1rem;
-        bottom: 3rem;
-        width:3.5rem;
-        height: 3.5rem;
+        right: 1rem;
+        font-size: 2rem;
+        bottom: 2rem;
+        display: block;
     }
-
+    
+    .bxs-send
+    {
+        right: 1rem;
+        font-size: 2rem;
+        bottom:7rem;
+        display: block;
+    }
+    
+    .bxs-envelope
+    {
+        right: 1rem;
+        font-size: 2rem;
+        display: block;
+        bottom: 12rem;
+    }
 
 
 

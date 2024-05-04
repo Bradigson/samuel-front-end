@@ -11,6 +11,7 @@ export const SpotifyRequest = async (token:string)=>{
         headers: {
         'Authorization': `Bearer ${token}`, // Token de acceso para autenticación
         },
+        mode : 'cors'
     };
     // Realizar la solicitud
     return await axios.get(url, config)

@@ -19,6 +19,7 @@ export const SpotifyAuthentication = async ()=>
           body: new URLSearchParams({
             grant_type: 'client_credentials',
           }),
+          mode : 'cors'
         });
     
         if (!response.ok) {

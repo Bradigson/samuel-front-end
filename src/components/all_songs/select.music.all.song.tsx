@@ -127,6 +127,7 @@ const AllSong = ()=>{
 
     // filter functions request
     const handleFilterRequets = async ()=>{
+        setIsLoading(true);
         let track = filterParams.query.toString();
         let limit = parseInt(filterParams.limit.toString());
 
@@ -135,6 +136,7 @@ const AllSong = ()=>{
             {
                 const response = await filterBySongOrArtis(t, track, limit);
                 setSongs(response.tracks);
+                setIsLoading(false);
 
             }else
             {
@@ -156,6 +158,7 @@ const AllSong = ()=>{
 
     //functiion to refresh
     const refresh = async ()=>{
+        setIsLoading(true);
         await SpotifyAuthentication().then(async (token)=>{
             if(token !== null)
             {
@@ -163,10 +166,12 @@ const AllSong = ()=>{
                 if(requestResponse !== null)
                 {   
                     setSongs(requestResponse.tracks);
+                    setIsLoading(false);
                 }
             }else
             {
                 console.log("data null");
+                
             }
         })
         .catch(err=>{
@@ -310,14 +315,13 @@ const AllSong = ()=>{
                 <div className="allsong_header-search_container">
                     <input type="text" className="allsong_header-search" name="query" value={filterParams.query}  onChange={handleFilter}/>
                     <input type="number" className="allsong_header_search-limit" name="limit" max={50} value={filterParams.limit} onChange={handleLimit}/>
-                    <button onClick={handleFilterRequets}>
-                        <i className='bx bx-search-alt'></i>
-                    </button>
+
+                    
+                    <i className='bx bx-search-alt' onClick={handleFilterRequets}></i>
 
                     <i className='bx bx-envelope' onClick={showModal}></i>
-                    <button className="btn-search">
-                        <i className='bx bx-refresh' onClick={refresh}></i>
-                    </button>
+
+                    <i className='bx bx-refresh' onClick={refresh}></i>
                 </div>
 
             </header>
@@ -343,39 +347,32 @@ const AllSong = ()=>{
                     <div id='header_mobiles_container-list'>
                         <div className='header_mobiles_container_list-container'>
                             <div className='header_mobiles_container_list-input'>
-                                    <input type="text" placeholder='cancion' name="query" value={filterParams.query}  onChange={handleFilter}/>
+                                    <input type="text" placeholder='cancion' name="query" value={filterParams.query}  onChange={handleFilter}/><br/>
                                     <input type="number" name="limit" max={50} value={filterParams.limit} onChange={handleLimit}/>
                             </div>
                             <div className='header_mobiles_container_list-buttons'>
-                                <button onClick={handleFilterRequetsMobile}>
                                     {
                                         isLoading ? (
                                             <div className="spinner-border spinner-border-sm" role="status">
                                                 <span className="visually-hidden">Loading...</span>
                                             </div>
                                         ) : (
-                                            <i className='bx bx-search-alt'></i>
+                                            <i className='bx bx-search-alt' onClick={handleFilterRequetsMobile}></i>
                                         )
                                     }
-                                </button>
-                                <button onClick={showModal}>
-                                    <i className='bx bx-envelope'></i>
-                                </button>
-                                <button onClick={refreshMobile}>
+                                
+                                <i className='bx bx-envelope' onClick={showModal}></i>
+
                                     {
                                         isLoadingRefresh ? (
                                             <div className="spinner-border spinner-border-sm" role="status">
                                                 <span className="visually-hidden">Loading...</span>
                                             </div>
                                         ) : (
-                                            <i className='bx bx-refresh'></i>
+                                            <i className='bx bx-refresh' onClick={refreshMobile}></i>
                                         )
                                     }
-                                </button>
                             </div>
-                            {/* <div>
-                                <button></button>
-                            </div> */}
                         </div>
                     </div>
                 
@@ -478,9 +475,13 @@ const AllSong = ()=>{
 
                                 
             {/* open form || button to add you own song */}
-            <button className="floatinButtonToAdd" onClick={handleOpenForm}>
-                <i className='bx bx-folder-plus'></i>
-            </button>
+            <i className={menu ? 'bx bx-folder-plus d-none' : 'bx bx-folder-plus'} onClick={handleOpenForm}></i>
+
+            {/* open form || button to add you own song */}
+            <i className={menu ? 'bx bxs-send d-none' : 'bx bxs-send'} onClick={handleSendEmail}></i>
+
+            <i className={menu ? 'bx bxs-envelope d-none' : 'bx bxs-envelope'} onClick={showModal}></i>
+
 
 
 
@@ -504,6 +505,11 @@ const AllSong = ()=>{
                         <button>Agregar</button>
                     </div>
                 </form>
+            </div>
+
+
+            <div className={isLoading ?  "load_any_function" : " load_any_function d-none"}>
+                <span className="loader"></span>
             </div>
 
         </div>

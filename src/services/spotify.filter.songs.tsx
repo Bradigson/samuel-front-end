@@ -4,7 +4,6 @@
 import axios from 'axios';
 
 
-
 export const filterBySongOrArtis = async (token:string, track:string, limit:number)=>
 {
     if(limit <= 0)
@@ -19,6 +18,8 @@ export const filterBySongOrArtis = async (token:string, track:string, limit:numb
         headers: {
         'Authorization': `Bearer ${token}`, // Token de acceso para autenticación
         },
+        mode : 'cors'
+        
     };
     // Realizar la solicitud
     return await axios.get(url, config)
